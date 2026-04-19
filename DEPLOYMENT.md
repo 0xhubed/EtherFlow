@@ -22,7 +22,7 @@ The app now includes a built-in demo mode that allows visitors to try the app wi
 
 ### Demo Mode Setup
 1. Create a **separate Alchemy API key** for demo purposes
-2. Set it as `REACT_APP_DEMO_API_KEY` in Vercel
+2. Set it as `VITE_DEMO_API_KEY` in Vercel
 3. Configure **tight rate limits** for this key in Alchemy dashboard
 4. Monitor usage and adjust limits as needed
 
@@ -75,7 +75,7 @@ git push origin main
 3. Click "Import Project"
 4. Connect your GitHub repository
 5. Configure the environment variable:
-   - Variable name: `REACT_APP_ALCHEMY_API_KEY`
+   - Variable name: `VITE_ALCHEMY_API_KEY`
    - Value: Your Alchemy API key
 
 ### 4. Configure Environment Variables
@@ -84,11 +84,11 @@ In your Vercel dashboard:
 1. Go to your project settings
 2. Navigate to "Environment Variables"
 3. Add these environment variables:
-   - **Name**: `REACT_APP_ALCHEMY_API_KEY`
+   - **Name**: `VITE_ALCHEMY_API_KEY`
    - **Value**: Your personal Alchemy API key (fallback)
    - **Environments**: Production, Preview, Development
    
-   - **Name**: `REACT_APP_DEMO_API_KEY` (Optional)
+   - **Name**: `VITE_DEMO_API_KEY` (Optional)
    - **Value**: A separate API key for demo usage (recommended)
    - **Environments**: Production, Preview, Development
 
@@ -128,7 +128,7 @@ const [userApiKey, setUserApiKey] = useState('');
 />
 
 // Use user key if provided, otherwise use environment key
-const apiKey = userApiKey || process.env.REACT_APP_ALCHEMY_API_KEY;
+const apiKey = userApiKey || import.meta.env.VITE_ALCHEMY_API_KEY;
 ```
 
 This way:
@@ -168,7 +168,7 @@ After deployment:
 ## Troubleshooting
 
 ### API Key Not Working
-- Verify the environment variable name exactly matches `REACT_APP_ALCHEMY_API_KEY`
+- Verify the environment variable name exactly matches `VITE_ALCHEMY_API_KEY`
 - Check that the key is valid in Alchemy dashboard
 - Ensure domain restrictions allow your Vercel domain
 

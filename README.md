@@ -32,7 +32,8 @@ EtherFlow is a comprehensive web application for analyzing Ethereum transaction 
 
 ## Technology Stack
 
-- **Frontend**: React.js with modern hooks and state management
+- **Frontend**: React 19 + TypeScript 5, built with Vite 6
+- **State**: Zustand 5 (global) + TanStack Query 5 (server cache)
 - **Blockchain Data**: Alchemy SDK for reliable Ethereum network access
 - **Visualizations**: D3.js for interactive charts and network graphs
 - **Styling**: Tailwind CSS with custom shadcn/ui-inspired components
@@ -59,15 +60,25 @@ EtherFlow is a comprehensive web application for analyzing Ethereum transaction 
 
 3. Create a `.env` file in the root directory and add your Alchemy API key:
    ```bash
-   REACT_APP_ALCHEMY_API_KEY=your-api-key-here
+   VITE_ALCHEMY_API_KEY=your-api-key-here
    ```
 
 4. Start the development server
    ```bash
-   npm start
+   npm run dev
    ```
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+### Verifying your setup
+
+Run the combined quality gate before committing or opening a PR:
+
+```bash
+npm run check
+```
+
+This runs lint, type-check, tests, and a production build in sequence. Any failure short-circuits.
 
 ## How to Use EtherFlow
 
@@ -110,7 +121,7 @@ EtherFlow can be easily deployed to Vercel or other static hosting platforms. Se
 
 ### Quick Deploy to Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/etherflow&env=REACT_APP_ALCHEMY_API_KEY&envDescription=Alchemy%20API%20key%20for%20Ethereum%20data%20access&envLink=https://www.alchemy.com/)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/etherflow&env=VITE_ALCHEMY_API_KEY&envDescription=Alchemy%20API%20key%20for%20Ethereum%20data%20access&envLink=https://www.alchemy.com/)
 
 **Important**: Since this is a client-side app, the API key will be visible to users. Use a free-tier Alchemy key and configure domain restrictions in your Alchemy dashboard for security.
 

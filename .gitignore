@@ -22,3 +22,8 @@ yarn-debug.log*
 yarn-error.log*
 **/.claude/settings.local.json
 .vercel
+
+# TypeScript build info and emit
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
