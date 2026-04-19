@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   test: {
     globals: true,
+    restoreMocks: true,
     environment: 'happy-dom',
     setupFiles: ['./src/test/setup.ts'],
     include: ['src/**/*.{test,spec}.{js,ts,jsx,tsx}'],

@@ -8,6 +8,7 @@ describe('appStore', () => {
       showPatternAnalysis: false,
       showGasAnalysis: false,
       showProfitLoss: false,
+      showSavedSearches: false,
       selectedPartner: null,
       error: null,
     })
