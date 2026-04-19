@@ -50,7 +50,6 @@ function App() {
     isLoading,
     isError,
     error: fetchError,
-    refetch,
   } = useTransferData(searchAddress, {
     fromBlock: fromBlock || undefined,
     toBlock: toBlock || undefined,

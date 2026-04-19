@@ -4,7 +4,6 @@
  */
 
 import type {
-  Transaction,
   PatternAnalysisResult,
   PeriodicPattern,
   RoundNumberAnalysis,
