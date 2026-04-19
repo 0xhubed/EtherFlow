@@ -28,6 +28,7 @@ export default tseslint.config(
       // Dead JS service files pending M1 rewiring.
       'src/services/alchemyService.js',
       'src/services/demoService.js',
+      'src/services/gasAnalysisService.js',
       'src/services/profitLossService.js',
       'src/services/treeMapService.js',
     ],
@@ -46,8 +47,10 @@ export default tseslint.config(
     rules: {
       ...reactHooks.configs.recommended.rules,
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
-      // legacy-JS code deleted in Dispatch B had many loose patterns.
-      // For the surviving JS visualization components, be lenient until M1 rewires them.
+      // Soften no-explicit-any to warn rather than error. The TS migration
+      // from the 2026 modernization branch is partial — some services still
+      // use 'any' in places that will be cleaned up in M1+. Erroring on
+      // every instance would block progress without signal.
       '@typescript-eslint/no-explicit-any': 'warn',
     },
   },
