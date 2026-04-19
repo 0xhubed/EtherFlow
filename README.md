@@ -70,6 +70,16 @@ EtherFlow is a comprehensive web application for analyzing Ethereum transaction 
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
+### Verifying your setup
+
+Run the combined quality gate before committing or opening a PR:
+
+```bash
+npm run check
+```
+
+This runs lint, type-check, tests, and a production build in sequence. Any failure short-circuits.
+
 ## How to Use EtherFlow
 
 ### Basic Analysis

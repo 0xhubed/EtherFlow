@@ -1,7 +1,7 @@
 import type { EthereumAddress, TransferPartner } from './ethereum'
 
 // Visualization mode enum
-export type VisualizationMode = 'network' | 'timeline' | 'heatmap' | 'treemap' | '3d'
+export type VisualizationMode = 'network' | 'timeline' | 'heatmap' | 'treemap'
 
 // Network Graph Types (D3)
 export interface NetworkNode {

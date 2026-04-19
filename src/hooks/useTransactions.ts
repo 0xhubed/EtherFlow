@@ -3,73 +3,15 @@
  */
 
 import { useQuery } from '@tanstack/react-query'
-import {
-  getAddressTransactions,
-  processTransferPartners,
-  getTransferData,
-} from '@/services/transactionService'
+import { getAddressTransactions, getTransferData } from '@/services/transactionService'
 import { analyzeTransactionPatterns } from '@/services/patternAnalysisService'
-import type { TransferPartner, TransferData, PatternAnalysisResult } from '@/types'
+import type { TransferData, PatternAnalysisResult } from '@/types'
 import { isValidAddress } from '@/lib/utils'
 
 interface UseTransactionsOptions {
   fromBlock?: string
   toBlock?: string
   enabled?: boolean
-}
-
-/**
- * Hook to fetch raw transactions for an address
- */
-export function useTransactions(address: string | null, options: UseTransactionsOptions = {}) {
-  const { fromBlock, toBlock, enabled = true } = options
-
-  return useQuery({
-    queryKey: ['transactions', address, fromBlock, toBlock],
-    queryFn: async () => {
-      if (!address) throw new Error('Address is required')
-      return getAddressTransactions(address, { fromBlock, toBlock })
-    },
-    enabled: enabled && !!address && isValidAddress(address),
-    staleTime: 5 * 60 * 1000, // 5 minutes
-    gcTime: 30 * 60 * 1000, // 30 minutes
-  })
-}
-
-/**
- * Hook to fetch and process transfer partners for an address
- */
-export function useTransferPartners(
-  address: string | null,
-  options: UseTransactionsOptions = {}
-): {
-  data: TransferPartner[] | undefined
-  isLoading: boolean
-  isError: boolean
-  error: Error | null
-  refetch: () => void
-} {
-  const { fromBlock, toBlock, enabled = true } = options
-
-  const query = useQuery({
-    queryKey: ['transferPartners', address, fromBlock, toBlock],
-    queryFn: async () => {
-      if (!address) throw new Error('Address is required')
-      const transactions = await getAddressTransactions(address, { fromBlock, toBlock })
-      return processTransferPartners(transactions)
-    },
-    enabled: enabled && !!address && isValidAddress(address),
-    staleTime: 5 * 60 * 1000,
-    gcTime: 30 * 60 * 1000,
-  })
-
-  return {
-    data: query.data,
-    isLoading: query.isLoading,
-    isError: query.isError,
-    error: query.error,
-    refetch: query.refetch,
-  }
 }
 
 /**
