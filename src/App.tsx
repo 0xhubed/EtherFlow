@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip'
 import { cn, isValidAddress, truncateAddress, formatEth, downloadJson } from '@/lib/utils'
+import { EXAMPLE_ADDRESSES } from '@/lib/example-addresses'
 import type { VisualizationMode, TransferPartner } from '@/types'
 import './App.css'
 
@@ -174,6 +175,36 @@ function App() {
                 <Button onClick={handleSearch} disabled={isLoading}>
                   {isLoading ? 'Searching...' : 'Search'}
                 </Button>
+              </div>
+
+              {/* Example Addresses — try one if you're new */}
+              <div>
+                <p className="text-sm text-muted-foreground mb-2">
+                  Try an example:
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {EXAMPLE_ADDRESSES.map((ex) => (
+                    <Tooltip key={ex.address}>
+                      <TooltipTrigger asChild>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleDemoAddress(ex.address)}
+                          className={cn(
+                            ex.category === 'sanctioned' && 'border-red-400 text-red-800',
+                            ex.category === 'hack' && 'border-amber-400 text-amber-800'
+                          )}
+                        >
+                          {ex.label}
+                        </Button>
+                      </TooltipTrigger>
+                      <TooltipContent className="max-w-xs">
+                        <p>{ex.description}</p>
+                        <p className="font-mono text-xs mt-1 opacity-70">{ex.address}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  ))}
+                </div>
               </div>
 
               {/* Filters Toggle */}
